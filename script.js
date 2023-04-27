@@ -1,21 +1,24 @@
 let playerWins = 0;
 let computerWins = 0;
+let playerChoice;
 
-for(let i=0; i<5; i++){
-let input = prompt("Rock, Paper, or Scissors? (Best out of 5)")
-if(input.toLowerCase() == "rock"){
-    input = 0;
-}
-else if(input.toLowerCase() == "paper"){
-    input = 1;
-}
-else if(input.toLowerCase() == "scissors"){
-    input = 2;
-}
-else{
-    (console.log("Input a valid object idiot."))
-    continute; //go to next iteration of the loop
-}
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+
+//for(let i=0; i<5; i++){
+rockButton.addEventListener('click', function(){
+    playerChoice = 0
+    getComputerChoice();
+});
+paperButton.addEventListener('click', function(){
+    playerChoice = 1
+    getComputerChoice();
+});
+scissorsButton.addEventListener('click', function(){
+    playerChoice = 2
+    getComputerChoice();
+});
 
 getComputerChoice();
 
@@ -32,48 +35,48 @@ else{
     console.log('Computer chooses Scissors');
 }
 
-let result = singleRound(number, input);
+let result = singleRound(number, playerChoice);
 console.log(result);
 }
 
+const resultDiv = document.getElementById("resultDiv");
 
-function singleRound(number, input){
-    if(number==0 && input==1){
+function singleRound(number, playerChoice){
+    if(number==0 && playerChoice==1){
         playerWins++;
-        return("You win.");
+        resultDiv.textContent = ("You win.");
     }
-    else if(number==1 && input==0){
+    else if(number==1 && playerChoice==0){
         computerWins++;
-        return("You lose.");
+        resultDiv.textContent = ("You lose.");
     }
-    else if(number==0 && input==0){
-        return("Tie.");
+    else if(number==0 && playerChoice==0){
+        resultDiv.textContent = ("Tie.");
     }
-    else if(number==1 && input==1){
-        return("Tie.");
+    else if(number==1 && playerChoice==1){
+        resultDiv.textContent = ("Tie.");
     }
-    else if(number==0 && input==2){
+    else if(number==0 && playerChoice==2){
         computerWins++;
-        return("You lose.");
+        resultDiv.textContent = ("You lose.");
     }
-    else if(number==2 && input==0){
+    else if(number==2 && playerChoice==0){
         playerWins++;
-        return("You win.");
+        resultDiv.textContent = ("You win.");
     }
-    else if(number==2 && input==1){
+    else if(number==2 && playerChoice==1){
         computerWins++;
-        return("You lose.");
+        resultDiv.textContent = ("You lose.");
     }
-    else if(number==1 && input==2){
+    else if(number==1 && playerChoice==2){
         playerWins++;
-        return("You win.");
+        resultDiv.textContent = ("You win.");
     }
-    else if(number==2 && input==2){
-        return("Tie.");
+    else if(number==2 && playerChoice==2){
+        resultDiv.textContent = ("Tie.");
     }
-    else "Input a valid object idiot.";
 }
-}
+//}
 
 console.log("Player Wins:" + playerWins);
 console.log("Computer Wins:" + computerWins);
